@@ -11,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowpassword] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const google = window.google
 
   useEffect(() => {
     if (sessionStorage.getItem('token')) {
@@ -23,7 +24,7 @@ function Login() {
       if (res.status) {
         toast.success("Login successful!")
         sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('data', res.data?.[0]);
+        sessionStorage.setItem('userid', res.data?.[0].userid);
         navigate('/home');
       } else {
         toast.error(res.message);
@@ -58,7 +59,7 @@ function Login() {
       if (res.status) {
         toast.success("Login successful!")
         sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('data', res.data?.[0]);
+        sessionStorage.setItem('userid', res.data?.[0].userid);
         navigate('/home');
       } else {
         toast.error(res.message);
