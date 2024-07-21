@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Column from './Column';
 import BurnBarrel from './BurnBarrel';
 import { SearchTasks } from '../Api';
+import { Field, Select } from '@headlessui/react';
+import clsx from 'clsx';
 
 const Board = () => {
     const DEFAULT_CARDS = [
@@ -36,7 +38,9 @@ const Board = () => {
     ];
 
     const [cards, setCards] = useState(DEFAULT_CARDS);
-    const [fetch, setFetch] = useState(false)
+    const [fetch, setFetch] = useState(false);
+    const [searchterm, setSearchterm] = useState();
+    const [filter, setFilter] = useState()
 
     useEffect(() => {
         SearchTasks().then((res) => {
@@ -46,43 +50,109 @@ const Board = () => {
                 setCards([])
             }
         })
-    }, [fetch])
+    }, [fetch]);
+
+    const handleSearch = () => {
+        const val = 'term=' + searchterm;
+        SearchTasks(val).then((res) => {
+            if (res.status) {
+                setCards(res.data);
+            } else {
+                setCards([])
+            }
+        })
+    }
+
+    const handleFilter = (value) => {
+        setFilter(value)
+
+        if (value == 'none') {
+            SearchTasks().then((res) => {
+                if (res.status) {
+                    setCards(res.data);
+                } else {
+                    setCards([])
+                }
+            })
+        } else {
+            const val = 'tags=' + value;
+            SearchTasks(val).then((res) => {
+                if (res.status) {
+                    setCards(res.data);
+                } else {
+                    setCards([])
+                }
+            })
+        }
+    }
 
     return (
-        <div className="flex h-full w-full gap-5 overflow-scroll p-12">
-            <Column
-                title="Backlog"
-                column="backlog"
-                headingColor="text-neutral-500"
-                cards={cards}
-                setCards={setCards}
-                setFetch={setFetch}
-            />
-            <Column
-                title="TODO"
-                column="todo"
-                headingColor="text-yellow-200"
-                cards={cards}
-                setCards={setCards}
-                setFetch={setFetch}
-            />
-            <Column
-                title="In progress"
-                column="doing"
-                headingColor="text-blue-300"
-                cards={cards}
-                setCards={setCards}
-                setFetch={setFetch}
-            />
-            <Column
-                title="Complete"
-                column="done"
-                headingColor="text-emerald-200"
-                cards={cards}
-                setCards={setCards}
-                setFetch={setFetch}
-            />
-            <BurnBarrel setCards={setCards} setFetch={setFetch} />
+        <div className="flex flex-col justify-center overflow-scroll">
+            <div className="mt-5 flex justify-between">
+                <div className="flex flex-1 gap-3 mx-4">
+                    <div className='w-1/3 px-4 py-2 bg-neutral-800 rounded-full flex justify-center items-center'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <input onBlur={() => handleSearch()} className="text-gray-300 ml-5 text-sm w-full bg-neutral-800 focus:outline-none focus:ring-0" placeholder="Search for task name" onChange={(e) => setSearchterm(e.target.value)} ></input>
+                    </div>
+                    <button onClick={() => handleSearch()} className="py-1 px-5 bg-violet-500 text-white rounded-full active:bg-blue-600">Search</button>
+                </div>
+                <Field className='flex flex-3 mx-3'>
+                    <div className='text-sm text-gray-400 items-center'>
+                        Filter By
+                    </div>
+                    <Select value={filter} onChange={(e) => { handleFilter(e.target.value) }}
+                        className={clsx(
+                            'block w-full appearance-none rounded-full border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white',
+                            'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
+                            // Make the text of each option black on Windows
+                            '*:text-black'
+                        )}
+                    >
+                        <option value="none">None</option>
+                        <option value="bug">Bug</option>
+                        <option value="feature">Feature</option>
+                        <option value="tobediscussed">To Be Discussed</option>
+                        <option value="notpriority">Not Priority</option>
+                    </Select>
+                </Field>
+            </div>
+            <div className="flex h-full w-full gap-5 p-12">
+                <Column
+                    title="Backlog"
+                    column="backlog"
+                    headingColor="text-neutral-500"
+                    cards={cards}
+                    setCards={setCards}
+                    setFetch={setFetch}
+                />
+                <Column
+                    title="TODO"
+                    column="todo"
+                    headingColor="text-yellow-200"
+                    cards={cards}
+                    setCards={setCards}
+                    setFetch={setFetch}
+                />
+                <Column
+                    title="In progress"
+                    column="doing"
+                    headingColor="text-blue-300"
+                    cards={cards}
+                    setCards={setCards}
+                    setFetch={setFetch}
+                />
+                <Column
+                    title="Complete"
+                    column="done"
+                    headingColor="text-emerald-200"
+                    cards={cards}
+                    setCards={setCards}
+                    setFetch={setFetch}
+                />
+                <BurnBarrel setCards={setCards} setFetch={setFetch} />
+            </div>
         </div>
     );
 
