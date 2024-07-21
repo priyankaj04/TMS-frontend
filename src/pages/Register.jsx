@@ -57,10 +57,14 @@ function Register() {
 
         const reqbody = {
             firstname: firstname,
-            lastname: lastname,
             email: email,
             password: password
         }
+
+        if (lastname?.trim()) {
+            reqbody.lastname = lastname
+        }
+
         SignUp(reqbody).then((res) => {
             if (res.status) {
                 toast.success('Successfully registered!');

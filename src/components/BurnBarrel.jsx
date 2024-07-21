@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { DeleteTask } from "../Api";
+import toast from "react-hot-toast";
 
 
-const BurnBarrel = ({ setCards }) => {
+const BurnBarrel = ({ setCards, setFetch }) => {
     const [active, setActive] = useState(false);
 
     const handleDragOver = (e) => {
@@ -16,8 +18,14 @@ const BurnBarrel = ({ setCards }) => {
 
     const handleDragEnd = (e) => {
         const cardId = e.dataTransfer.getData("cardId");
-        setCards((pv) => pv.filter((c) => c.id !== cardId));
-
+        DeleteTask(cardId).then((res) => {
+            if (res.status) {
+                toast.success("Deleted successfully!");
+                setFetch((prev) => !prev);
+            } else {
+                toast.error(res.message);
+            }
+        });
         setActive(false);
     };
 

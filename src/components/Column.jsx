@@ -3,17 +3,20 @@ import { motion } from "framer-motion";
 import Card from './Card';
 import AddCard from './AddCard';
 import DropIndicator from './DropIndicator';
+import { UpdateTasksbyTaskid } from "../Api";
 
 function Column({ title, headingColor, cards, column, setCards, setFetch }) {
+
     const [active, setActive] = useState(false);
 
     const handleDragStart = (e, card) => {
-        e.dataTransfer.setData("cardId", card.taskid);
+        e.dataTransfer.setData("cardId", card.id);
+        console.log(e.dataTransfer.getData("cardId"))
     };
 
     const handleDragEnd = (e) => {
         const cardId = e.dataTransfer.getData("cardId");
-        
+
         setActive(false);
         clearHighlights();
 
@@ -24,13 +27,16 @@ function Column({ title, headingColor, cards, column, setCards, setFetch }) {
 
         if (before !== cardId) {
             let copy = [...cards];
-
             let cardToTransfer = copy.find((c) => c.taskid === cardId);
+
             if (!cardToTransfer) return;
             cardToTransfer = { ...cardToTransfer, listname: column };
-
+            UpdateTasksbyTaskid(cardId, { listname: column }).then((res) => {
+                if (res.status) {
+                    setFetch((prev) => !prev);
+                }
+            })
             copy = copy.filter((c) => c.taskid !== cardId);
-
             const moveToBack = before === "-1";
 
             if (moveToBack) {
@@ -38,7 +44,6 @@ function Column({ title, headingColor, cards, column, setCards, setFetch }) {
             } else {
                 const insertAtIndex = copy.findIndex((el) => el.taskid === before);
                 if (insertAtIndex === -1) return;
-
                 copy.splice(insertAtIndex, 0, cardToTransfer);
             }
 
@@ -115,11 +120,10 @@ function Column({ title, headingColor, cards, column, setCards, setFetch }) {
                 onDrop={handleDragEnd}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
-                className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"
-                    }`}
+                className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"}`}
             >
                 {filteredCards.map((c) => {
-                    return <Card key={c.taskid} title={c.taskname} taskdetails={c} handleDragStart={handleDragStart} />;
+                    return <Card key={c.taskid} id={c.taskid} title={c.taskname} taskdetails={c} handleDragStart={handleDragStart} setFetch={setFetch} />;
                 })}
                 <DropIndicator beforeId={null} column={column} />
                 <AddCard column={column} setCards={setCards} setFetch={setFetch} />

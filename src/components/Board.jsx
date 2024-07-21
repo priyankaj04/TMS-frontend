@@ -82,7 +82,7 @@ const Board = () => {
                 setCards={setCards}
                 setFetch={setFetch}
             />
-            <BurnBarrel setCards={setCards} />
+            <BurnBarrel setCards={setCards} setFetch={setFetch} />
         </div>
     );
 
