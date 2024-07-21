@@ -4,16 +4,16 @@ import Card from './Card';
 import AddCard from './AddCard';
 import DropIndicator from './DropIndicator';
 
-function Column({ title, headingColor, cards, column, setCards }) {
+function Column({ title, headingColor, cards, column, setCards, setFetch }) {
     const [active, setActive] = useState(false);
 
     const handleDragStart = (e, card) => {
-        e.dataTransfer.setData("cardId", card.id);
+        e.dataTransfer.setData("cardId", card.taskid);
     };
 
     const handleDragEnd = (e) => {
         const cardId = e.dataTransfer.getData("cardId");
-
+        
         setActive(false);
         clearHighlights();
 
@@ -25,19 +25,19 @@ function Column({ title, headingColor, cards, column, setCards }) {
         if (before !== cardId) {
             let copy = [...cards];
 
-            let cardToTransfer = copy.find((c) => c.id === cardId);
+            let cardToTransfer = copy.find((c) => c.taskid === cardId);
             if (!cardToTransfer) return;
-            cardToTransfer = { ...cardToTransfer, column };
+            cardToTransfer = { ...cardToTransfer, listname: column };
 
-            copy = copy.filter((c) => c.id !== cardId);
+            copy = copy.filter((c) => c.taskid !== cardId);
 
             const moveToBack = before === "-1";
 
             if (moveToBack) {
                 copy.push(cardToTransfer);
             } else {
-                const insertAtIndex = copy.findIndex((el) => el.id === before);
-                if (insertAtIndex === undefined) return;
+                const insertAtIndex = copy.findIndex((el) => el.taskid === before);
+                if (insertAtIndex === -1) return;
 
                 copy.splice(insertAtIndex, 0, cardToTransfer);
             }
@@ -104,7 +104,7 @@ function Column({ title, headingColor, cards, column, setCards }) {
         setActive(false);
     };
 
-    const filteredCards = cards.filter((c) => c.column === column);
+    const filteredCards = cards.filter((c) => c.listname === column);
 
     return (
         <div className="w-[275px] shrink-0">
@@ -119,10 +119,10 @@ function Column({ title, headingColor, cards, column, setCards }) {
                     }`}
             >
                 {filteredCards.map((c) => {
-                    return <Card key={c.id} {...c} handleDragStart={handleDragStart} />;
+                    return <Card key={c.taskid} title={c.taskname} taskdetails={c} handleDragStart={handleDragStart} />;
                 })}
                 <DropIndicator beforeId={null} column={column} />
-                <AddCard column={column} setCards={setCards} />
+                <AddCard column={column} setCards={setCards} setFetch={setFetch} />
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import DropIndicator from './DropIndicator';
 
-const Card = ({ title, id, column, handleDragStart }) => {
+const Card = ({ title, id, column, handleDragStart, taskdetails }) => {
   return (
     <>
       <DropIndicator beforeId={id} column={column} />

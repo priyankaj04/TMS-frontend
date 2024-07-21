@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import toast, { Toaster } from 'react-hot-toast';
+import { CreateTask } from "../Api";
 
-const AddCard = ({ column, setCards }) => {
+const AddCard = ({ column, setFetch }) => {
   const [text, setText] = useState("");
   const [adding, setAdding] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!text.trim().length) return;
-
+    if (!text.trim().length) {
+      toast.error("Add task name.")
+      return;
+    }
     const newCard = {
-      column,
-      title: text.trim(),
-      id: Math.random().toString(),
+      listname: column,
+      taskname: text.trim(),
     };
 
-    setCards((pv) => [...pv, newCard]);
-
+    CreateTask(newCard).then((res) => {
+      if (res.status) {
+        setFetch((prev) => !prev);
+        toast.success("Added successfully!");
+      } else {
+        toast.error(res.message);
+      }
+    })
     setAdding(false);
   };
 

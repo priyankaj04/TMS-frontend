@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Column from './Column';
 import BurnBarrel from './BurnBarrel';
-import { useFetcher } from "react-router-dom";
+import { SearchTasks } from '../Api';
 
 const Board = () => {
     const DEFAULT_CARDS = [
@@ -36,10 +36,17 @@ const Board = () => {
     ];
 
     const [cards, setCards] = useState(DEFAULT_CARDS);
+    const [fetch, setFetch] = useState(false)
 
     useEffect(() => {
-        
-    })
+        SearchTasks().then((res) => {
+            if (res.status) {
+                setCards(res.data);
+            } else {
+                setCards([])
+            }
+        })
+    }, [fetch])
 
     return (
         <div className="flex h-full w-full gap-5 overflow-scroll p-12">
@@ -49,6 +56,7 @@ const Board = () => {
                 headingColor="text-neutral-500"
                 cards={cards}
                 setCards={setCards}
+                setFetch={setFetch}
             />
             <Column
                 title="TODO"
@@ -56,6 +64,7 @@ const Board = () => {
                 headingColor="text-yellow-200"
                 cards={cards}
                 setCards={setCards}
+                setFetch={setFetch}
             />
             <Column
                 title="In progress"
@@ -63,6 +72,7 @@ const Board = () => {
                 headingColor="text-blue-300"
                 cards={cards}
                 setCards={setCards}
+                setFetch={setFetch}
             />
             <Column
                 title="Complete"
@@ -70,6 +80,7 @@ const Board = () => {
                 headingColor="text-emerald-200"
                 cards={cards}
                 setCards={setCards}
+                setFetch={setFetch}
             />
             <BurnBarrel setCards={setCards} />
         </div>
