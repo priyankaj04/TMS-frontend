@@ -79,35 +79,35 @@ function Register() {
     }
 
     return (
-        <div className='w-screen h-screen flex justify-center items-center bg-blue-700'>
+        <div className='w-screen h-screen flex justify-center items-center bg-violet-500'>
             <Toaster />
-            <div className="border p-5 h-5/6 w-5/6 rounded-xl shadow mt-5 flex bg-white">
+            <div className="border border-neutral-700 p-5 h-5/6 w-5/6 rounded-xl shadow mt-5 flex bg-neutral-900">
                 <div className='flex-1 p-5 justify-center flex flex-col'>
                     <div className='mb-5'>
-                        <h4 className='font-bold text-2xl text-center'>Create Account</h4>
-                        <p className='text-center'>Ready, Set, Connect: Register for Your Account Instantly.</p>
+                        <h4 className='font-bold text-2xl text-center text-violet-500'>Create Account</h4>
+                        <p className='text-center text-white'>Ready, Set, Connect: Register for Your Account Instantly.</p>
                     </div>
                     <div>
-                        <div className='flex gap-2 my-2 text-gray-500'>
+                        <div className='flex gap-2 my-2 text-gray-300'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                             </svg> Full Name</div>
-                        <input className=" mb-2 w-full px-4 py-2 border rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setFullname(e.target.value)} ></input>
+                        <input className="text-gray-300 mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setFullname(e.target.value)} ></input>
                     </div>
                     <div>
-                        <div className='flex gap-2 my-2 text-gray-500'>
+                        <div className='flex gap-2 my-2 text-gray-300'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25" />
                             </svg> Email</div>
-                        <input className=" mb-2 w-full px-4 py-2 border rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setEmail(e.target.value)} ></input>
+                        <input className="text-gray-300 mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setEmail(e.target.value)} ></input>
                     </div>
                     <div>
-                        <div className='flex gap-2 my-2 text-gray-500'>
+                        <div className='flex gap-2 my-2 text-gray-300'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                             </svg> Password</div>
-                        <div className='mb-2 w-full px-4 py-2 border rounded-xl flex'>
-                            <input type={showPassword ? 'text' : 'password'} className="text-sm w-full focus:outline-none focus:ring-0" onChange={(e) => setPassword(e.target.value)} ></input>
+                        <div className='mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl flex'>
+                            <input type={showPassword ? 'text' : 'password'} className="text-gray-300 text-sm w-full bg-neutral-800 focus:outline-none focus:ring-0" onChange={(e) => setPassword(e.target.value)} ></input>
                             {
                                 showPassword ?
                                     <svg onClick={() => setShowpassword(false)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-gray-500 cursor-pointer">
@@ -122,19 +122,13 @@ function Register() {
                         </div>
                     </div>
                     <div className='flex justify-center'>
-                        <button onClick={() => handleRegister()} className="p-3 w-48 bg-blue-700 text-white rounded-full active:bg-blue-600">
+                        <button onClick={() => handleRegister()} className="p-3 w-48 bg-violet-500 text-white rounded-full active:bg-blue-600">
                             Create Account
                         </button>
                     </div>
-                    <div className="flex items-center justify-center mt-5">
-                        <div className="flex-grow border-t border-gray-300"></div>
-                        <span className="mx-4 text-gray-500 text-sm">or sign up with</span>
-                        <div className="flex-grow border-t border-gray-300"></div>
-                    </div>
-                    <div className='flex justify-center items-center mt-6' id='signInDiv' />
-                    <p className='text-center mt-5'>Already have an account? <span onClick={() => handleNavigate()} className='cursor-pointer text-blue-700'>Sign In</span></p>
+                    <p className='text-center mt-5 text-gray-300'>Already have an account? <span onClick={() => handleNavigate()} className='cursor-pointer text-violet-500'>Sign In</span></p>
                 </div>
-                <div className='h-full border border-l-0'></div>
+                <div className='h-full border border-neutral-700 border-l-0'></div>
                 <img className='w-1/2 h-full' src={loginimg} />
             </div>
         </div>

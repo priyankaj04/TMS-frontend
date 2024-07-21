@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../components/Navbar';
+import Kanban from '../components/Kanban';
 import { GetUserByUserid } from '../Api';
 
 function Home() {
@@ -33,6 +34,7 @@ function Home() {
     <div>
       <Toaster />
       <Navbar userDetails={userData?.[0]} />
+      <Kanban />
     </div>
   )
 }

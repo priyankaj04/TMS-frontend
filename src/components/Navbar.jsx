@@ -13,7 +13,7 @@ function Navbar({ userDetails }) {
 }
 
   return (
-    <div className='w-full h-16 bg-blue-700 flex flex-1 justify-between'>
+    <div className='w-full h-16 bg-violet-500 flex flex-1 justify-between'>
       <div></div>
       <div className='flex justify-center items-center mx-5'>
         <Menu>

@@ -665,7 +665,7 @@ video {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.bg-blue-700 {
+.bg-violet-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
@@ -711,7 +711,7 @@ video {
   font-weight: 700;
 }
 
-.text-blue-700 {
+.text-violet-500 {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
 }
