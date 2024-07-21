@@ -14,17 +14,18 @@ function Register() {
     const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
-        /* if (sessionStorage.getItem('token')) {
-          navigate('/home');
-        } */
+        if (sessionStorage.getItem('token')) {
+            navigate('/home');
+        }
     }, [])
 
     function handleCallbackResponse(response) {
         OauthLogin({ credential: response.credential }).then((res) => {
             if (res.status) {
                 toast.success("Login successful!")
-                navigate('/home');
                 sessionStorage.setItem('token', res.token);
+                sessionStorage.setItem('data', res.data?.[0]);
+                navigate('/home');
             } else {
                 toast.error(res.message);
                 console.log('message', res.message);
@@ -63,6 +64,7 @@ function Register() {
             if (res.status) {
                 toast.success('Successfully registered!');
                 sessionStorage.setItem('token', res.token);
+                sessionStorage.setItem('data', res.data?.[0]);
                 navigate('/home');
             } else {
                 toast.error(res.message);
