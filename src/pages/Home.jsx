@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function Home() {
 
@@ -10,9 +12,10 @@ function Home() {
       navigate('/login');
     }
   }, [])
-  
+
   return (
     <div>
+      <Toaster />
 
     </div>
   )

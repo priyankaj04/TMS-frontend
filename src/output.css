@@ -559,6 +559,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -614,6 +618,10 @@ video {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .flex-col {
@@ -701,6 +709,11 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
