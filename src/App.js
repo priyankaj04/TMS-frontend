@@ -8,7 +8,7 @@ const Register = lazy(() => import('./pages/Register'));
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-neutral-900">
       <Routes>
         <Route path="" exact element={<Home />} />
         <Route path="/home" exact element={<Home />} />

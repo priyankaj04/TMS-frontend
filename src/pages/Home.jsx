@@ -31,7 +31,7 @@ function Home() {
   }, [])
 
   return (
-    <div>
+    <div className='bg-neutral-900'>
       <Toaster />
       <Navbar userDetails={userData?.[0]} />
       <Kanban />
