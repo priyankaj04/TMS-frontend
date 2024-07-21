@@ -45,8 +45,8 @@ function Navbar({ userDetails }) {
   }
 
   return (
-    <div className='w-full h-16 bg-violet-500 flex flex-1 justify-between'>
-      <div></div>
+    <div className='w-full h-16 bg-violet-500 flex flex-1 justify-between items-center'>
+      <div className='text-white font-semibold text-lg ml-5'>Voosh's Workspace</div>
       <div className='flex justify-center items-center mx-5'>
         <Menu>
           <MenuButton><Avatar firstname={userDetails?.firstname} color={userDetails?.profilecolor} /></MenuButton>
