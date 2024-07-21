@@ -81,6 +81,9 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => 
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>{dayjs(duedate).format('DD MMM YYYY HH:mm')}
         </div> : <></>}
+        <div className="flex flex-1 justify-end">
+        <Avatar small={true} firstname={taskdetails.assigned_user?.firstname} color={taskdetails.assigned_user?.profilecolor} />
+        </div>
       </motion.div>
       <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">

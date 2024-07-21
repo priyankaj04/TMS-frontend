@@ -197,7 +197,7 @@ export const GetTaskDetailsByTaskid = (taskid) => {
         });
 }
 
-export const SearchTasks = (query) => {
+export const SearchTasks = (query = '') => {
     const JWT = sessionStorage.getItem('token')
     const url = process.env.REACT_APP_API + '/tasks/search/query?' + query
     const fetchOptions = {
