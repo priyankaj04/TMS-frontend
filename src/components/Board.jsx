@@ -87,7 +87,7 @@ const Board = () => {
     }
 
     return (
-        <div className="flex flex-col justify-center overflow-scroll">
+        <div className="flex flex-col h-full w-full justify-center overflow-scroll">
             <div className="mt-5 flex justify-between">
                 <div className="flex flex-1 gap-3 mx-4">
                     <div className='w-1/3 px-4 py-2 bg-neutral-800 rounded-full flex justify-center items-center'>
@@ -118,7 +118,7 @@ const Board = () => {
                     </Select>
                 </Field>
             </div>
-            <div className="flex h-full w-full gap-5 p-12">
+            <div className="flex h-full w-full gap-5 m-12">
                 <Column
                     title="Backlog"
                     column="backlog"
