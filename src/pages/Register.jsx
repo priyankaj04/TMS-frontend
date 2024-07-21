@@ -7,7 +7,8 @@ import toast, { Toaster } from 'react-hot-toast';
 function Register() {
 
     const navigate = useNavigate();
-    const [fullname, setFullname] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowpassword] = useState(false);
@@ -51,18 +52,12 @@ function Register() {
     }, []);
 
     const handleRegister = () => {
-        const names = fullname.split(' ');
-        const firstname = names.shift();
-        const lastname = names.join(' ');
 
         const reqbody = {
             firstname: firstname,
+            lastname: lastname,
             email: email,
             password: password
-        }
-
-        if (lastname?.trim()) {
-            reqbody.lastname = lastname
         }
 
         SignUp(reqbody).then((res) => {
@@ -91,12 +86,18 @@ function Register() {
                         <h4 className='font-bold text-2xl text-center text-violet-500'>Create Account</h4>
                         <p className='text-center text-white'>Ready, Set, Connect: Register for Your Account Instantly.</p>
                     </div>
-                    <div>
-                        <div className='flex gap-2 my-2 text-gray-300'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                            </svg> Full Name</div>
-                        <input className="text-gray-300 mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setFullname(e.target.value)} ></input>
+                    <div className='flex gap-5'>
+                        <div className='flex-1'>
+                            <div className='flex gap-2 my-2 text-gray-300'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg> First Name</div>
+                            <input className="text-gray-300 mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setFirstname(e.target.value)} ></input>
+                        </div>
+                        <div className='flex-1'>
+                            <div className='flex gap-2 my-2 text-gray-300'> Last Name</div>
+                            <input className="text-gray-300 mb-2 w-full px-4 py-2 bg-neutral-800 rounded-xl text-sm focus:outline-none focus:ring-0" onChange={(e) => setLastname(e.target.value)} ></input>
+                        </div>
                     </div>
                     <div>
                         <div className='flex gap-2 my-2 text-gray-300'>
