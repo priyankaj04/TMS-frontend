@@ -4,17 +4,17 @@ import DropIndicator from './DropIndicator';
 import Avatar from './Avatar';
 import { Button, Dialog, DialogPanel, DialogTitle, Description, Field, Label, Select } from '@headlessui/react';
 import clsx from 'clsx';
-import { UpdateTasksbyTaskid } from "../Api";
+import { UpdateTasksbyTaskid, AssignTask } from "../Api";
 import toast from "react-hot-toast";
 import dayjs from 'dayjs';
 
 
-const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => {
+const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch, userslist }) => {
   let [isOpen, setIsOpen] = useState(false)
   const [taskname, setTaskname] = useState('');
   const [taskdescription, setTaskdescription] = useState('');
   const [duedate, setDuedate] = useState('');
-  const [tags, setTags] = useState('');
+  const [tags, setTags] = useState('');  
 
   useEffect(() => {
     if (taskdetails) {
@@ -24,6 +24,8 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => 
       setTags(taskdetails.tags?.[0] ?? '')
     }
   }, [taskdetails]);
+
+  
 
   const handleConfirm = () => {
     const reqbody = {
@@ -37,6 +39,17 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => 
         toast.success("Task updated successfully!");
         setFetch((prev) => !prev);
         setIsOpen(false);
+      } else {
+        toast.error(res.message);
+      }
+    })
+  }
+  
+  const handleAssigne = (value) =>{
+    AssignTask(id,{userid: value}).then((res) => {
+      if(res.status){
+        toast.success("Assigned Task!");
+        setFetch((prev) => !prev);
       } else {
         toast.error(res.message);
       }
@@ -82,7 +95,7 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => 
           </svg>{dayjs(duedate).format('DD MMM YYYY HH:mm')}
         </div> : <></>}
         <div className="flex flex-1 justify-end">
-        <Avatar small={true} firstname={taskdetails.assigned_user?.firstname} color={taskdetails.assigned_user?.profilecolor} />
+          <Avatar small={true} firstname={taskdetails.assigned_user?.firstname} color={taskdetails.assigned_user?.profilecolor} />
         </div>
       </motion.div>
       <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
@@ -128,13 +141,31 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch }) => 
                   </Select>
                 </Field>
               </div>
+              <div className="my-2">
+                <Field>
+                  <div className='flex gap-3 text-sm text-gray-400 items-center'>
+                    Assign To
+                    <div target={tags ?? ''} style={{ backgroundColor: getColor(tags ?? '') }} className="w-10 h-2 rounded-full"></div>
+                  </div>
+                  <Select onChange={(e) => handleAssigne(e.target.value)}
+                    className={clsx(
+                      'block w-full appearance-none rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white',
+                      'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
+                      // Make the text of each option black on Windows
+                      '*:text-black'
+                    )}
+                  >
+                    {userslist?.map((item) => <option value={item.userid}>{item.firstname}</option>)}
+                  </Select>
+                </Field>
+              </div>
               <div className="my-4 flex gap-2 items-center text-gray-400">
                 Assigned to <Avatar small={true} firstname={taskdetails.assigned_user?.firstname} color={taskdetails.assigned_user?.profilecolor} />
-                  <p>{taskdetails.assigned_user?.firstname}.</p>
+                <p>{taskdetails.assigned_user?.firstname}.</p>
               </div>
               <div className="my-4 flex gap-2 items-center text-gray-400">
                 Created By <Avatar small={true} firstname={taskdetails.created_by?.firstname} color={taskdetails.created_by?.profilecolor} />
-                  <p>{taskdetails.created_by?.firstname}.</p>
+                <p>{taskdetails.created_by?.firstname}.</p>
               </div>
               <div className="mt-4 flex justify-end flex-1 gap-5">
                 <Button

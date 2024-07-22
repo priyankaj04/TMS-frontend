@@ -78,6 +78,30 @@ export const GetUserByUserid = (userid) => {
         });
 }
 
+export const GetAllUsersList = () => {
+    const JWT = sessionStorage.getItem('token')
+    const url = process.env.REACT_APP_API + '/user/get/all';
+    const fetchOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": 'Bearer ' + JWT
+        },
+    };
+    return fetch(url, fetchOptions)
+        .then((response) => {
+            if (response.status === 401) {
+                sessionStorage.clear();
+                return ({ status: 0, msg: "Session Expired! Login again" });
+            } else
+                return response.json()
+        })
+        .catch((error) => {
+            console.log(error);
+            return ({ status: 0, msg: error.message })
+        });
+}
+
 export const UpdateUserByUserid = (userid, reqbody) => {
     const JWT = sessionStorage.getItem('token')
     const url = process.env.REACT_APP_API + '/user/' + userid
@@ -130,7 +154,7 @@ export const ChangePassword = (userid, reqbody) => {
 
 export const DeleteUser = (userid) => {
     const JWT = sessionStorage.getItem('token')
-    const url = process.env.REACT_APP_API + '/user/password/' + userid
+    const url = process.env.REACT_APP_API + '/user/' + userid
     const fetchOptions = {
         method: "DELETE",
         headers: {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Column from './Column';
 import BurnBarrel from './BurnBarrel';
-import { SearchTasks } from '../Api';
+import { SearchTasks, GetAllUsersList } from '../Api';
 import { Field, Select } from '@headlessui/react';
 import clsx from 'clsx';
 
@@ -40,7 +40,8 @@ const Board = () => {
     const [cards, setCards] = useState(DEFAULT_CARDS);
     const [fetch, setFetch] = useState(false);
     const [searchterm, setSearchterm] = useState();
-    const [filter, setFilter] = useState()
+    const [filter, setFilter] = useState();
+    const [userslist, setUserslist] = useState([]);
 
     useEffect(() => {
         SearchTasks().then((res) => {
@@ -51,6 +52,16 @@ const Board = () => {
             }
         })
     }, [fetch]);
+
+    useEffect(() => {
+        GetAllUsersList().then((res) => {
+            if (res.status) {
+                setUserslist(res.data);
+            } else {
+                setUserslist([]);
+            }
+        })
+    }, [])
 
     const handleSearch = () => {
         const val = 'term=' + searchterm;
@@ -68,6 +79,15 @@ const Board = () => {
 
         if (value == 'none') {
             SearchTasks().then((res) => {
+                if (res.status) {
+                    setCards(res.data);
+                } else {
+                    setCards([])
+                }
+            })
+        } else if (value === 'taskassignedtome') {
+            const val = 'assignedto=' + sessionStorage.getItem('userid');
+            SearchTasks(val).then((res) => {
                 if (res.status) {
                     setCards(res.data);
                 } else {
@@ -111,6 +131,7 @@ const Board = () => {
                         )}
                     >
                         <option value="none">None</option>
+                        <option value="taskassignedtome">Task assigned to me</option>
                         <option value="bug">Bug</option>
                         <option value="feature">Feature</option>
                         <option value="tobediscussed">To Be Discussed</option>
@@ -126,6 +147,7 @@ const Board = () => {
                     cards={cards}
                     setCards={setCards}
                     setFetch={setFetch}
+                    userslist={userslist}
                 />
                 <Column
                     title="TODO"
@@ -134,6 +156,7 @@ const Board = () => {
                     cards={cards}
                     setCards={setCards}
                     setFetch={setFetch}
+                    userslist={userslist}
                 />
                 <Column
                     title="In progress"
@@ -142,6 +165,7 @@ const Board = () => {
                     cards={cards}
                     setCards={setCards}
                     setFetch={setFetch}
+                    userslist={userslist}
                 />
                 <Column
                     title="Complete"
@@ -150,6 +174,7 @@ const Board = () => {
                     cards={cards}
                     setCards={setCards}
                     setFetch={setFetch}
+                    userslist={userslist}
                 />
                 <BurnBarrel setCards={setCards} setFetch={setFetch} />
             </div>

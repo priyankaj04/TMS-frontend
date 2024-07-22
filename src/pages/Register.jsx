@@ -124,10 +124,12 @@ function Register() {
                                     </svg>
 
                             }
+
                         </div>
+                        <p className='text-neutral-400 text-[12px]'>*Strong password which consists of minimum 1 Uppercase letter, 6-16 Lowercase letters, 1 digit and 1 special character. </p>
                     </div>
                     <div className='flex justify-center'>
-                        <button onClick={() => handleRegister()} className="p-3 w-48 bg-violet-500 text-white rounded-full active:bg-blue-600">
+                        <button onClick={() => handleRegister()} className="p-3 mt-5 w-48 bg-violet-500 text-white rounded-full active:bg-blue-600">
                             Create Account
                         </button>
                     </div>

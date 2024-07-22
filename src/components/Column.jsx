@@ -5,7 +5,7 @@ import AddCard from './AddCard';
 import DropIndicator from './DropIndicator';
 import { UpdateTasksbyTaskid } from "../Api";
 
-function Column({ title, headingColor, cards, column, setCards, setFetch }) {
+function Column({ title, headingColor, cards, column, setCards, setFetch, userslist }) {
 
     const [active, setActive] = useState(false);
 
@@ -123,7 +123,7 @@ function Column({ title, headingColor, cards, column, setCards, setFetch }) {
                 className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"}`}
             >
                 {filteredCards.map((c) => {
-                    return <Card key={c.taskid} id={c.taskid} title={c.taskname} taskdetails={c} handleDragStart={handleDragStart} setFetch={setFetch} />;
+                    return <Card key={c.taskid} userslist={userslist} id={c.taskid} title={c.taskname} taskdetails={c} handleDragStart={handleDragStart} setFetch={setFetch} />;
                 })}
                 <DropIndicator beforeId={null} column={column} />
                 <AddCard column={column} setCards={setCards} setFetch={setFetch} />
