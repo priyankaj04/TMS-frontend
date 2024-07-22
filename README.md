@@ -84,3 +84,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+## Outputs
+
+<img width="1470" alt="Screenshot 2024-07-22 at 12 14 11 PM" src="https://github.com/user-attachments/assets/d9cf20ff-426a-4102-82f2-83c7c2c5b3fd">
+<img width="1470" alt="Screenshot 2024-07-22 at 12 13 51 PM" src="https://github.com/user-attachments/assets/2078d7db-51bc-401f-a59a-2e0b4b969eb3">
+<img width="1391" alt="Screenshot 2024-07-22 at 12 12 21 PM" src="https://github.com/user-attachments/assets/cf496863-ecba-4708-a3de-28e4869286ad">
