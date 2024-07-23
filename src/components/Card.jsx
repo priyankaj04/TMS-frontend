@@ -145,7 +145,6 @@ const Card = ({ title, id, column, handleDragStart, taskdetails, setFetch, users
                 <Field>
                   <div className='flex gap-3 text-sm text-gray-400 items-center'>
                     Assign To
-                    <div target={tags ?? ''} style={{ backgroundColor: getColor(tags ?? '') }} className="w-10 h-2 rounded-full"></div>
                   </div>
                   <Select onChange={(e) => handleAssigne(e.target.value)}
                     className={clsx(
