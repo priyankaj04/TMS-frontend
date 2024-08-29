@@ -45,5 +45,5 @@ The Task Manager is fully hosted on Vercel, with both the frontend and backend d
 <img width="1391" alt="Screenshot 2024-07-22 at 12 12 21 PM" src="https://github.com/user-attachments/assets/cf496863-ecba-4708-a3de-28e4869286ad">
 
 
-# Thank You
+### Thank You
 Thank you for exploring the Task Manager! If you have any feedback or questions, feel free to reach out or contribute to the project.
