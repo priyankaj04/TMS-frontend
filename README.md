@@ -1,68 +1,49 @@
-# Task Manager
+# Task Management System
 
-This project is a front-end application bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is designed as a task manager with multiple features to efficiently manage tasks.
 
-## Getting Started
+Hosted on Vercel - [Explore Task Manager here.](https://tms-frontend-omega.vercel.app/login)
 
-To get a local copy up and running, follow these simple steps.
 
-### Prerequisites
+## Overview
 
-- Node.js and npm installed. You can download them from [here](https://nodejs.org/).
 
-### Installation
-
-1. Clone the repo:
-    ```sh
-    git clone https://github.com/priyankaj04/TMS-frontend.git
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd your-repo-name
-    ```
-3. Install NPM packages:
-    ```sh
-    npm install
-    ```
-
-### Available Scripts
-
-In the project directory, you can run:
-
-#### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Task Manager is a front-end application designed to streamline task management with a user-friendly interface and real-time updates. Built with React and styled using Tailwind CSS, this application leverages modern web technologies to offer an intuitive and efficient way to create, manage, and organize tasks. The app is fully hosted on Vercel, with the backend and database powered by Supabase, a cloud-based platform.
 
 
 ## Features
 
-- **Task Management**: Create, update, delete, and manage tasks.
-- **Drag-and-Drop Interface**: Move tasks between different columns with an intuitive drag-and-drop interface.
-- **User-Friendly Interface**: Intuitive design for easy task management.
-- **Real-Time Updates**: See changes in tasks in real-time.
+
+* `Task Management`: Create, update, delete, and manage your tasks efficiently.
+* `Drag-and-Drop Interface`: Easily move tasks between different columns with a smooth drag-and-drop feature.
+* `User-Friendly Interface`: A clean and intuitive design that makes task management straightforward.
+* `Real-Time Updates`: Experience instant changes in tasks, with real-time syncing across all devices.
+
 
 ## Tech Stack
 
-- **React**: A JavaScript library for building user interfaces.
-- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
-- **HeadlessUi**: Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
-- **Framer Motion**: A library for animations and drag-and-drop interactions.
+
+* `React.js`: A JavaScript library for building responsive and dynamic user interfaces.
+* `Tailwind CSS`: A utility-first CSS framework that enables the rapid creation of custom designs.
+* `Headless UI`: Unstyled, fully accessible UI components that integrate seamlessly with Tailwind CSS.
+* `Framer Motion`: A library used for animations and creating smooth drag-and-drop interactions.
+* `Supabase`: A backend-as-a-service platform providing the database and authentication layer, enabling real-time features and hosting on the cloud.
 
 ## Deployment
 
-- This webiste is hosted on **Vercle** . [Click here](https://tms-frontend-omega.vercel.app/login)
 
-## Learn More
+The Task Manager is fully hosted on Vercel, with both the frontend and backend deployed seamlessly. The database is managed through Supabase, providing a scalable and reliable backend solution.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Hosted Frontend: [Click here to visit the Task Manager](https://tms-frontend-omega.vercel.app/login)
+* Hosted Backend: [Click here to visit the Backend](https://tms-backend-eta.vercel.app)
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Outputs
+
 
 <img width="1470" alt="Screenshot 2024-07-22 at 12 14 11 PM" src="https://github.com/user-attachments/assets/d9cf20ff-426a-4102-82f2-83c7c2c5b3fd">
 <img width="1470" alt="Screenshot 2024-07-22 at 12 13 51 PM" src="https://github.com/user-attachments/assets/2078d7db-51bc-401f-a59a-2e0b4b969eb3">
 <img width="1391" alt="Screenshot 2024-07-22 at 12 12 21 PM" src="https://github.com/user-attachments/assets/cf496863-ecba-4708-a3de-28e4869286ad">
+
+
+# Thank You
+Thank you for exploring the Task Manager! If you have any feedback or questions, feel free to reach out or contribute to the project.
