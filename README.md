@@ -7,7 +7,7 @@ Hosted on Vercel - [Explore Task Manager here.](https://tms-frontend-omega.verce
 ## Overview
 
 
-The Task Manager is a front-end application designed to streamline task management with a user-friendly interface and real-time updates. Built with React and styled using Tailwind CSS, this application leverages modern web technologies to offer an intuitive and efficient way to create, manage, and organize tasks. The app is fully hosted on Vercel, with the backend and database powered by Supabase, a cloud-based platform.
+The Task Manager is a full-stack web application designed to streamline task management with a user-friendly interface and real-time updates. Built with React and styled using Tailwind CSS, this application leverages modern web technologies to offer an intuitive and efficient way to create, manage, and organize tasks. The app is fully hosted on Vercel, with the backend and database powered by Supabase, a cloud-based platform.
 
 
 ## Outputs
